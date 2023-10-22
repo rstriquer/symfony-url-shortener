@@ -82,6 +82,8 @@ The environment is composed of a local mysql container to facilitate the configu
 
 To run the unit tests at the project run the command `SYMFONY_DEPRECATIONS_HELPER=weak ./bin/phpunit --exclude-group ignore`.
 
+For task delivery, it is possible to run paratest in order to run tests faster with parallel processing: `time vendor/bin/paratest --processes=4 --runner=WrapperRunner` (note that the "time" command will always provide you a report of the time consumed in the tests).
+
 # License
 
 [MIT](https://choosealicense.com/licenses/mit/)

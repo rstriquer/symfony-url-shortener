@@ -1,5 +1,9 @@
+parameters:
+  test_token: 1
+
 doctrine:
   dbal:
     driver: "pdo_sqlite"
     memory: true
     charset: UTF8
+    dbname: "db_%env(default:test_token:TEST_TOKEN)%"
