@@ -80,7 +80,7 @@ The environment is composed of a local mysql container to facilitate the configu
 
 ## Unit testing
 
-To run the unit tests at the project run the command `./bin/phpunit --exclude-group ignore`.
+To run the unit tests at the project run the command `SYMFONY_DEPRECATIONS_HELPER=weak ./bin/phpunit --exclude-group ignore`.
 
 # License
 
