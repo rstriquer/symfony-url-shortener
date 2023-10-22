@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PublichomeController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>(Simple) Symfony URL Shortener</h1>
+
+    {{ form_start(form) }}
+    {{ form_widget(form.url)}}
+    {% for message in app.flashes('error') %}
+        <div class="alert-error">{{ message }}</div>
+    {% endfor %}
+    {% for message in form.url.vars.errors %}
+        <div class="alert-error">{{ message }}</div>
+    {% endfor %}
+
+    {{ form_end(form) }}
+
+    {% if list %}
+    <div class="url-list">
+        <ul class="list-title">
+            <li class="url-big-column">URL</li>
+            <li>TAG</li>
+        </ul>
+        {% for line in list %}
+        <ul class="list-line">
+            <li class="url-big-column">{{ line.url }}</li>
+            <li class="url-tag-column" onclick="window.open('/{{ line.tag }}', '_blank')">{{ line.tag }}</li>
+        </ul>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

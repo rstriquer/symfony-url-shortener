@@ -1,21 +1,38 @@
-version: '3'
+version: "3.7"
 
-services:
-###> doctrine/doctrine-bundle ###
-  database:
-    image: postgres:${POSTGRES_VERSION:-15}-alpine
-    environment:
-      POSTGRES_DB: ${POSTGRES_DB:-app}
-      # You should definitely change the password in production
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-!ChangeMe!}
-      POSTGRES_USER: ${POSTGRES_USER:-app}
-    volumes:
-      - database_data:/var/lib/postgresql/data:rw
-      # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
-      # - ./docker/db/data:/var/lib/postgresql/data:rw
-###< doctrine/doctrine-bundle ###
+networks:
+  local-vpc:
+    driver: bridge
 
 volumes:
-###> doctrine/doctrine-bundle ###
-  database_data:
-###< doctrine/doctrine-bundle ###
+  database:
+    driver: local
+
+services:
+  database:
+    image: mysql:5.7
+    networks:
+      - local-vpc
+    environment:
+      - MYSQL_DATABASE=${DATABASE_NAME:-url_shortener_dev}
+      - MYSQL_USER=${DATABASE_USERNAME:-someuser}
+      - MYSQL_PASSWORD=${DATABASE_PASSWORD:-123456}
+      - MYSQL_ROOT_PASSWORD=${DATABASE_ROOT_PASSWORD:-some_hard_thing}
+      - LANG=C.UTF_8
+      - TZ=${DATABASE_WORKSPACE_TIMEZONE:-UTC}
+    volumes:
+      - ${DATABASE_HOST_DATA_PATH:-./var/docker/mysql}:/var/lib/mysql
+      - "./config/docker/mysql/dev:/docker-entrypoint-initdb.d"
+    ports:
+      - "${DATABASE_PORT:-3306}:3306"
+    command:
+      [
+        "mysqld",
+        "--character-set-server=utf8mb4",
+        "--collation-server=utf8mb4_unicode_ci",
+        "--skip-character-set-client-handshake",
+      ]
+
+  # mailer:
+  #   image: schickling/mailcatcher
+  #   ports: ["1025", "1080"]

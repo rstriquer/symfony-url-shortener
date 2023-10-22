@@ -1,0 +1,38 @@
+@startuml Diagrama de classes para exportalção de assinaturas
+
+class URLController extends AbstractController {
+    - service : URLService
+}
+
+class ViewListURLController extends URLController {
+    + index()
+}
+
+class CreateNewURLController extends URLController {
+    + index()
+}
+
+class FowardURLController extends URLController {
+    + index()
+}
+
+class URLService extends Service {
+    - repository : URLRepository
+    + getOne()
+    + list()
+    + save()
+}
+
+class URLRepository extends Repository {
+    + saveData()
+    + loadRecords()
+}
+
+ViewListURLController *-- URLService :calls list >
+
+FowardURLController *-- URLService :calls getOne >
+
+CreateNewURLController *-- URLService :calls save >
+URLService *-- URLRepository
+
+@enduml
