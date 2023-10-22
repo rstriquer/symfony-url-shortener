@@ -2,6 +2,12 @@
 
 URL Shortener project built in symfony
 
+## Class-diagram
+
+Below an approximate example of the main architecture used in the application
+
+![Workflow](/docs/workflow.png)
+
 ## Used Stack
 
 **Front-end**: symfony/form
