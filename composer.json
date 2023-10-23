@@ -94,6 +94,7 @@
     },
     "require-dev": {
         "brianium/paratest": "*",
+        "escapestudios/symfony2-coding-standard": "3.x-dev",
         "phpstan/extension-installer": "*",
         "phpstan/phpstan-symfony": "*",
         "phpunit/phpunit": "^9.5",
