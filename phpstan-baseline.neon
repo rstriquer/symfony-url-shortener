@@ -1,0 +1,26 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Method App\\\\Repository\\\\UrlRepository\\:\\:flush\\(\\) has parameter \\$entity with no type specified\\.$#"
+			count: 1
+			path: src/Repository/UrlRepository.php
+
+		-
+			message: "#^Property App\\\\Tests\\\\Controller\\\\CreateNewUrlControllerTest\\:\\:\\$metaData with generic class Doctrine\\\\ORM\\\\Mapping\\\\ClassMetadata does not specify its types\\: T$#"
+			count: 1
+			path: tests/Controller/CreateNewUrlControllerTest.php
+
+		-
+			message: "#^Property App\\\\Tests\\\\Controller\\\\RedirectUrlControllerTest\\:\\:\\$metaData with generic class Doctrine\\\\ORM\\\\Mapping\\\\ClassMetadata does not specify its types\\: T$#"
+			count: 1
+			path: tests/Controller/RedirectUrlControllerTest.php
+
+		-
+			message: "#^Property App\\\\Tests\\\\Controller\\\\UrlControllerTest\\:\\:\\$metaData with generic class Doctrine\\\\ORM\\\\Mapping\\\\ClassMetadata does not specify its types\\: T$#"
+			count: 1
+			path: tests/Controller/UrlControllerTest.php
+
+		-
+			message: "#^Property App\\\\Tests\\\\Controller\\\\ViewListUrlControllerTest\\:\\:\\$metaData with generic class Doctrine\\\\ORM\\\\Mapping\\\\ClassMetadata does not specify its types\\: T$#"
+			count: 1
+			path: tests/Controller/ViewListUrlControllerTest.php

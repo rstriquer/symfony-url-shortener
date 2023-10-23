@@ -10,12 +10,11 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase as TestCase;
 class UrlServiceTest extends TestCase
 {
     /** @test */
-    public function getTagByUrl_throw_not_found():void
+    public function getTagByUrlThrowNotFound(): void
     {
         $this->expectException(EntityNotFoundException::class);
-        
-        $repository = $this->createMock(UrlRepository::class);
 
+        $repository = $this->createMock(UrlRepository::class);
         $container = static::getContainer();
         $container->set(UrlRepository::class, $repository);
 

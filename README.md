@@ -82,6 +82,22 @@ The environment is composed of a local mysql container to facilitate the configu
 
 To run the unit tests at the project run the command `SYMFONY_DEPRECATIONS_HELPER=weak ./bin/phpunit --exclude-group ignore`.
 
+# Task delivery
+
+For task delivery, it is necessary to run the following ...
+
+## PHPStan
+
+It is necessary to run phpstan to ensure that the codes comply with the minimum standard. `./vendor/bin/phpstan analyse`
+
+## PHP_CodeSniffer
+
+Check if the code structure complies with the acceptable standard: `./vendor/bin/phpcs`
+
+## Unit testing
+
+Run paratest in order to run tests faster with parallel processing: `time vendor/bin/paratest --processes=4 --runner=WrapperRunner` (note that the "time" command will always provide you a report of the time consumed in the tests).
+
 # License
 
 [MIT](https://choosealicense.com/licenses/mit/)
