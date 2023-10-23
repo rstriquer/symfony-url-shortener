@@ -5,20 +5,17 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Controller\UrlController;
-use App\Entity\Url;
 use Doctrine\ORM\EntityNotFoundException;
 use Exception;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * Controls the action of displaying the shortened urls viewing page
+ */
 class ViewShortenedUrlController extends UrlController
 {
-    /**
-     * Undocumented function
-     * @inheritDoc
-     * @throws Undocumented function
-     */
     #[Route('/{url_tag}/preview', name: 'public_view_shortened_url', methods: ['GET'])]
     public function index(Request $payload): Response
     {

@@ -11,7 +11,7 @@ trait EntityManagerFlushTrait
      * @param $entity A Doctrine entity object
      * @throws \Exception Could throw any kind of Doctrine available exception
      */
-    public function flush($entity)
+    public function flush($entity) : void
     {
         $this->_em->persist($entity);
         $this->_em->flush();

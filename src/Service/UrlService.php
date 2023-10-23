@@ -59,6 +59,10 @@ class UrlService
         return $result;
     }
 
+    /**
+     * @return array{form: \Symfony\Component\Form\FormInterface, list: \App\Entity\Url[]}
+     * @throws Exception Any Symfony Form or Doctrine exception type
+     */
     public function list(FormBuilderInterface $form, Request $payload = null): array
     {
         return [
@@ -69,7 +73,7 @@ class UrlService
 
     /**
      * Return template data to render "view" page template on controller
-     * @param \App\Entity\Url $url
+     * @return string[]
      */
     public function view(string $tag) : array
     {

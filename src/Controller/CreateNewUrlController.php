@@ -14,9 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class CreateNewUrlController extends UrlController
 {
     /**
-     * Undocumented function
-     * @inheritDoc
-     * @throws Undocumented function
+     * @throws Exception
      */
     #[Route('/', name: 'create_new_url', methods: ['POST'])]
     public function index(Request $payload): RedirectResponse

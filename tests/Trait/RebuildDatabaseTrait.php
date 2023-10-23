@@ -12,13 +12,13 @@ use Doctrine\ORM\Tools\SchemaTool;
  */
 trait RebuildDatabaseTrait
 {
-    /** @var KernelBrowser */
+    /** @var \Symfony\Bundle\FrameworkBundle\KernelBrowser */
     private $client;
-    /** @var EntityManager */
+    /** @var \Doctrine\ORM\EntityManager */
     private $em;
     private SchemaTool $schemaTool;
     /**
-     * @var ClassMetadata[]
+     * @var array<\Doctrine\ORM\Mapping\ClassMetadata>
      */
     private $metaData;
 
