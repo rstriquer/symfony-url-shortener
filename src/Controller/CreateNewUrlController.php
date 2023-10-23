@@ -29,20 +29,17 @@ class CreateNewUrlController extends UrlController
                 'public_view_shortened_url',
                 [ 'url_tag' => $url ]
             );
-
         } catch (InvalidArgumentException $err) {
             $this->addFlash('error', $err->getMessage());
-
         } catch (UniqueConstraintViolationException $err) {
             return $this->redirectToRoute(
                 'public_view_shortened_url',
-                [ 
+                [
                     'url_tag' => $this->service->getTagByUrl(
                         $payload->request->all()['form']['url']
                     )
                 ]
             );
-
         } catch (Exception $err) {
             $this->addFlash('error', 'Internal Server Error!');
             $this->logger->error($err);
@@ -50,7 +47,6 @@ class CreateNewUrlController extends UrlController
                 dd($err);
             }
         }
-
         return $this->redirectToRoute('public_home', []);
     }
 }

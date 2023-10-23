@@ -15,7 +15,7 @@ class RedirectUrlControllerTest extends WebTestCase
     /**
      * @test
      */
-    public function class_has_instantiate_with_default_services(): void
+    public function classHasInstantiateWithDefaultServices(): void
     {
         $service = $this->createMock(UrlService::class);
         $logger = $this->createMock(LoggerInterface::class);

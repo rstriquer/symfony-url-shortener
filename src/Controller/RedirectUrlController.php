@@ -25,7 +25,6 @@ class RedirectUrlController extends UrlController
             return $this->redirect($this->service->redirect(
                 $payload->attributes->get('url_tag')
             ));
-
         } catch (EntityNotFoundException $err) {
             if ($this->getParameter('kernel.environment') === 'dev') {
                 dd($err);
@@ -33,7 +32,6 @@ class RedirectUrlController extends UrlController
             $this->logger->error($err);
             $this->addFlash('error', 'The TAG you tried does not existed!');
             return $this->redirectToRoute('public_home', []);
-
         } catch (Exception $err) {
             if ($this->getParameter('kernel.environment') === 'dev') {
                 dd($err);
@@ -43,6 +41,5 @@ class RedirectUrlController extends UrlController
         }
 
         return $this->redirectToRoute('public_home', []);
-
     }
 }

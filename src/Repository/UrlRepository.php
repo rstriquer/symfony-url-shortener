@@ -27,7 +27,7 @@ class UrlRepository extends ServiceEntityRepository
         parent::__construct($registry, Url::class);
     }
 
-    public function getNewUniqueTag(string $tag = null) : string
+    public function getNewUniqueTag(string $tag = null): string
     {
         if ($tag === null) {
             $tag = Str::random(6);

@@ -45,7 +45,7 @@ trait RebuildDatabaseTrait
         $this->schemaTool->updateSchema($this->metaData);
     }
 
-    private function isNotTestDatabase() : bool
+    private function isNotTestDatabase(): bool
     {
         if (
             getenv('DATABASE_URL')

@@ -24,8 +24,7 @@ class UrlService
     public function __construct(
         UrlRepository $repository,
         UrlGeneratorInterface $router
-    )
-    {
+    ) {
         $this->repository = $repository;
         $this->router = $router;
     }
@@ -37,20 +36,20 @@ class UrlService
     public function getForm(FormBuilderInterface $form, Request $payload = null): FormInterface
     {
         $result = $form->add(
-                'url',
-                null,
-                [
-                    'label' => false,
-                    'attr' => [
-                        'placeholder' => 'Enter a new URL to shorten',
-                    ],
-                    'constraints' => [
-                        new NotBlank(message: 'You need to provide an URL.'),
-                        new Url(message: 'The URL provided was invalid.'),
-                    ],
-                ]
-            )
-            ->getForm();
+            'url',
+            null,
+            [
+                'label' => false,
+                'attr' => [
+                    'placeholder' => 'Enter a new URL to shorten',
+                ],
+                'constraints' => [
+                    new NotBlank(message: 'You need to provide an URL.'),
+                    new Url(message: 'The URL provided was invalid.'),
+                ],
+            ]
+        )
+        ->getForm();
 
         if ($payload) {
             $result->handleRequest($payload);
@@ -75,7 +74,7 @@ class UrlService
      * Return template data to render "view" page template on controller
      * @return string[]
      */
-    public function view(string $tag) : array
+    public function view(string $tag): array
     {
         $record = $this->repository->findOneBy([ 'tag' => $tag ]);
 
@@ -86,18 +85,18 @@ class UrlService
         return [
             'url' => $record->getUrl(),
             'tag_local' => $this->router->generate(
-                'public_redirect_shortened_url', 
+                'public_redirect_shortened_url',
                 [ 'url_tag' => $record->getTag() ]
             ),
             'tag_full' => $this->router->generate(
-                'public_redirect_shortened_url', 
+                'public_redirect_shortened_url',
                 [ 'url_tag' => $record->getTag() ],
                 UrlGeneratorInterface::ABSOLUTE_URL
             ),
         ];
     }
 
-    public function redirect(string $tag) : string
+    public function redirect(string $tag): string
     {
         $record = $this->repository->findOneBy([ 'tag' => $tag ]);
 
@@ -108,7 +107,7 @@ class UrlService
         return $record->getUrl();
     }
 
-    public function getTagByUrl(string $tag) : string
+    public function getTagByUrl(string $tag): string
     {
         $record = $this->repository->findOneBy([ 'url' => $tag ]);
 
@@ -128,8 +127,7 @@ class UrlService
     public function createNew(
         FormBuilderInterface $form,
         Request $payload = null
-    ) : string
-    {
+    ): string {
         $form = $this->getForm($form, $payload);
 
         if (!$form->isSubmitted() || !$form->isValid()) {
@@ -148,8 +146,6 @@ class UrlService
         $url->setTag($this->repository->getNewUniqueTag($exists?->getTag()));
         $this->repository->flush($url);
 
-
         return $url->getTag();
     }
 }
-
